@@ -38,7 +38,7 @@ Map<String, dynamic> processarPacientes(List<String> pacientes, {idade = 20}) {
     dadosPaciente.clear();
     dadosPaciente = paciente.split('|');
     //* Pegando os pacientes cujo a idade é maior que 20 anos!
-    if (int.parse(dadosPaciente[1]) > 20) {
+    if (int.parse(dadosPaciente[1]) > idade) {
       idadePaciente++;
     }
     //* Separando o sobrenome com  espaço
