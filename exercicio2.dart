@@ -37,7 +37,7 @@ void contabilizarPessoas(Set<String> pessoasSemDuplicidade) {
   Map<String, dynamic> dadosFiltrados = processarDados(pessoasMaioresdeIdade);
   Map<String, dynamic> pessoasPorSexo = dadosFiltrados['pessoasPorSexo'];
   print("===== Resposta do exercício ===== ");
-  print("Existem ${dadosFiltrados['QtdMasculino']} homens e ${dadosFiltrados['QtdFeminino']} mulheres na lista sem duplicidade separados da seguinte forma:");
+  print("Existem ${dadosFiltrados['qtdMasculino']} homens e ${dadosFiltrados['qtdFeminino']} mulheres na lista sem duplicidade separados da seguinte forma:");
 
   pessoasPorSexo.forEach((sexo, pessoas) {
     print("Sexo ${sexo} ");
@@ -50,8 +50,8 @@ void contabilizarPessoas(Set<String> pessoasSemDuplicidade) {
 }
 
 Map<String, dynamic> processarDados(List<String> pessoasMaioresdeIdade) {
-  int QtdMasculino = 0;
-  int QtdFeminino = 0;
+  int qtdMasculino = 0;
+  int qtdFeminino = 0;
   Map<String, String> pessoaMaisVelha = {};
   Map<String, dynamic> pessoasPorSexo = {};
   pessoasMaioresdeIdade.forEach((pessoa) {
@@ -60,7 +60,7 @@ Map<String, dynamic> processarDados(List<String> pessoasMaioresdeIdade) {
     procurarPessoaMaisVelha(pessoaMaisVelha, dadosPessoa);
     separarPessoasPorSexo(pessoasPorSexo, dadosPessoa);
   });
-  return {'QtdMasculino': QtdMasculino, 'QtdFeminino': QtdFeminino, 'pessoaMaisVelha': pessoaMaisVelha, 'pessoasPorSexo': pessoasPorSexo};
+  return {'qtdMasculino': qtdMasculino, 'qtdFeminino': qtdFeminino, 'pessoaMaisVelha': pessoaMaisVelha, 'pessoasPorSexo': pessoasPorSexo};
 }
 
 void separarPessoasPorSexo(Map<String, dynamic> pessoasPorSexo, List<String> dadosPessoa) {
