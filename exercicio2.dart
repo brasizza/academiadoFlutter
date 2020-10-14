@@ -56,7 +56,7 @@ Map<String, dynamic> processarDados(List<String> pessoasMaioresdeIdade) {
   Map<String, dynamic> pessoasPorSexo = {};
   pessoasMaioresdeIdade.forEach((pessoa) {
     List<String> dadosPessoa = dividirNome(pessoa, '|');
-    dadosPessoa[2].compareTo('Masculino') == 0 ? (QtdMasculino++) : (QtdFeminino++);
+    dadosPessoa[2].compareTo('Masculino') == 0 ? (qtdMasculino++) : (qtdFeminino++);
     procurarPessoaMaisVelha(pessoaMaisVelha, dadosPessoa);
     separarPessoasPorSexo(pessoasPorSexo, dadosPessoa);
   });
