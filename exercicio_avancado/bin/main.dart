@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'commons/QueryBuilder.dart';
-import 'commons/dioInterceptor.dart';
-import 'models/cidade.dart';
-import 'models/estado.dart';
-import 'models/pais.dart';
-import 'repository/cidadeRepository.dart';
-import 'repository/estadoRepository.dart';
+import 'commons/DioInterceptor.dart';
+import 'models/Cidade.dart';
+import 'models/Estado.dart';
+import 'models/Pais.dart';
+import 'repository/CidadeRepository.dart';
+import 'repository/EstadoRepository.dart';
 
 void main(List<String> arguments) async {
   var conn = await QueryBuilder.getConnection();

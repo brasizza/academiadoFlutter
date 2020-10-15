@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dio/src/dio.dart';
-import '../models/pais.dart';
-import '../commons/constantes.dart';
+import '../models/Pais.dart';
+import '../commons/Constantes.dart';
 
 class EstadoRepository {
   Future<List<dynamic>> pegarEstados(Dio dio, Pais pais) async {

@@ -1,6 +1,6 @@
 import 'package:mysql1/mysql1.dart';
 
-import 'constantes.dart';
+import 'Constantes.dart';
 
 class QueryBuilder {
   var conn;

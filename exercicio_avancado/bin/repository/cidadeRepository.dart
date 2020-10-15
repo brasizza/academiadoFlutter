@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import '../models/cidade.dart';
-import '../commons/constantes.dart';
+import '../models/Cidade.dart';
+import '../commons/Constantes.dart';
 
 class CidadeRepository {
   Future<List<dynamic>> pegarCidades(Dio dio, String siglaPais, String siglaEstado) async {

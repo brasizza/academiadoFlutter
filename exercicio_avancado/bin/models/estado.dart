@@ -1,9 +1,6 @@
 import 'dart:convert';
-
 import 'package:mysql1/mysql1.dart';
-
 import '../commons/QueryBuilder.dart';
-import 'cidade.dart';
 
 class Estado extends QueryBuilder {
   int id;
