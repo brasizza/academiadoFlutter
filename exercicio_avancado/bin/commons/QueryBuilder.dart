@@ -16,7 +16,7 @@ class QueryBuilder {
   static void createDatabase(String estruturaBanco) async {
     var _conn = await getConnection();
     await _conn.query(estruturaBanco);
-    await _conn.close();
+    await closeConnection(_conn);
   }
 
   Future<void>clear( dynamic instance) async {
@@ -25,7 +25,7 @@ class QueryBuilder {
     var _tableName = QueryBuilder().discoverTableName(instance.runtimeType.toString());
     var sql = ' TRUNCATE  ${_tableName} ';
     await _conn.query(sql);
-    await _conn.close();
+    await closeConnection(_conn);
   }
 
   Future<dynamic> create( [dynamic model]) async {
@@ -38,7 +38,7 @@ class QueryBuilder {
     var _genWillcard = List.generate(_dados.length, (index) => '?').join(',');
     var sql = ' Insert into ${_tableName} (${_keys})  VALUES (${_genWillcard})';
     var result = await _conn.query(sql, _valuesObject);
-    await _conn.close();
+    await closeConnection(_conn);
     try {
       model.id = result.insertId;
     } catch (e) {
