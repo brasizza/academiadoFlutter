@@ -1,4 +1,3 @@
-const baseUrl = 'https://servicodados.ibge.gov.br/api/v1/localidades';
 const db_hostname = '127.0.0.1';
 const db_username = 'root';
 const db_password = 'marcus123@';

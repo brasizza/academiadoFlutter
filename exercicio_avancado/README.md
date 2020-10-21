@@ -1,4 +1,9 @@
-A simple command-line application.
+* Necessário trocar os seguintes dados para os dados do seu banco de dados no arquivo Constantes.dart que está em:
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+bin/commons/Constantes.dart
+
+const db_hostname = '127.0.0.1';
+const db_username = 'root';
+const db_password = 'marcus123@';
+const db_port = 3306;
+const db_dbname = 'curso_dart_flutter';
