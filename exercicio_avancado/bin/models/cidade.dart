@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:mysql1/mysql1.dart';
-
 import '../commons/QueryBuilder.dart';
 
 class Cidade extends QueryBuilder {
