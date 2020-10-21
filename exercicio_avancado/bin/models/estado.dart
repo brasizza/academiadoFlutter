@@ -23,13 +23,19 @@ class Estado extends QueryBuilder {
   `pais` BIGINT NULL,
   PRIMARY KEY (`id`))''';
 
-  static void initDatabase(MySqlConnection conn) async => await QueryBuilder.createDatabase(conn, estruturaBanco);
+  static void initDatabase() async => await QueryBuilder.createDatabase(estruturaBanco);
 
   @override
-  Future<dynamic> create(conn, [dynamic dados]) async {
-    await super.create(conn, this);
+  Future<dynamic> create( [dynamic dados]) async {
+    await super.create( this);
     return this;
   }
+
+  @override
+  Future<void> clear([dynamic model])async{
+    await super.clear(this);
+  }
+  
 
   Map<String, dynamic> toMap() {
     return {

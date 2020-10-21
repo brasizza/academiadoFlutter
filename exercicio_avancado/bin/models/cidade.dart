@@ -15,9 +15,14 @@ class Cidade extends QueryBuilder {
   });
 
   @override
-  Future<dynamic> create(conn, [dynamic dados]) async {
-    await super.create(conn, this);
+  Future<dynamic> create([dynamic dados]) async {
+    await super.create(this);
     return this;
+  }
+
+  @override
+  Future<void> clear([dynamic model])async{
+    await super.clear(this);
   }
 
   static const estruturaBanco = ''' create table if not exists
@@ -27,7 +32,7 @@ class Cidade extends QueryBuilder {
   `estado` BIGINT NULL,
   PRIMARY KEY (`id`));''';
 
-  static void initDatabase(MySqlConnection conn) async => await QueryBuilder.createDatabase(conn, estruturaBanco);
+  static void initDatabase() async => await QueryBuilder.createDatabase( estruturaBanco);
 
   Map<String, dynamic> toMap() {
     return {

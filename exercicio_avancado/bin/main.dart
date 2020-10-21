@@ -10,30 +10,21 @@ import 'repository/CidadeRepository.dart';
 import 'repository/EstadoRepository.dart';
 
 void main(List<String> arguments) async {
-  var conn = await QueryBuilder.getConnection();
-  Pais.initDatabase(conn);
-  Estado.initDatabase(conn);
-  Cidade.initDatabase(conn);
-  await QueryBuilder.clear(conn, Pais());
-  await QueryBuilder.clear(conn, Cidade());
-  await QueryBuilder.clear(conn, Estado());
-  var pais = await Pais(pais: 'Brasil', sigla: 'BR').create(conn);
-
+  await Pais.initDatabase();
+  await Estado.initDatabase();
+  await Cidade.initDatabase();
+  await Pais().clear().then((_) async => Cidade().clear()).then((_) async => Estado().clear());
+  var pais = await Pais(pais: 'Brasil', sigla: 'BR').create();
   var dio = Dio();
   dio.interceptors.add(DioInterceptor());
-  print('Pegando os estados do link do IBGE');
   var estados = await EstadoRepository().pegarEstados(dio, pais);
-
   await Future.forEach(estados, (estMap) async {
     estMap['pais'] = pais.id;
-    Estado estado = await Estado.fromMap(estMap).create(conn);
+    Estado estado = await Estado.fromMap(estMap).create();
     var cidades = await CidadeRepository().pegarCidades(dio, pais.sigla, estado.sigla);
     await Future.forEach(cidades, (cidMap) async {
       cidMap['estado'] = estado.id;
-      Cidade cidade = await Cidade.fromMap(cidMap).create(conn);
+      await Cidade.fromMap(cidMap).create();
     });
-  }).whenComplete(() async {
-    await QueryBuilder.closeConnection(conn);
-    exit(0);
   });
 }

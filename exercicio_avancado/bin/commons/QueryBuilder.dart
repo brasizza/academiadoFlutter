@@ -13,18 +13,23 @@ class QueryBuilder {
     await conn.close();
   }
 
-  static void createDatabase(MySqlConnection _conn, String estruturaBanco) async {
+  static void createDatabase(String estruturaBanco) async {
     var _conn = await getConnection();
     await _conn.query(estruturaBanco);
+    await _conn.close();
   }
 
-  static void clear(MySqlConnection _conn, dynamic instance) async {
+  Future<void>clear( dynamic instance) async {
+        var _conn = await getConnection();
+
     var _tableName = QueryBuilder().discoverTableName(instance.runtimeType.toString());
     var sql = ' TRUNCATE  ${_tableName} ';
     await _conn.query(sql);
+    await _conn.close();
   }
 
-  Future<dynamic> create(MySqlConnection _conn, [dynamic model]) async {
+  Future<dynamic> create( [dynamic model]) async {
+            var _conn = await getConnection();
     var _dados = (model.toMap()) as Map<String, dynamic>;
     var _tableName = discoverTableName(model.runtimeType.toString());
     var _keys = (_dados.keys.join(','));
@@ -33,6 +38,7 @@ class QueryBuilder {
     var _genWillcard = List.generate(_dados.length, (index) => '?').join(',');
     var sql = ' Insert into ${_tableName} (${_keys})  VALUES (${_genWillcard})';
     var result = await _conn.query(sql, _valuesObject);
+    await _conn.close();
     try {
       model.id = result.insertId;
     } catch (e) {
